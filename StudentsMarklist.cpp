@@ -9,18 +9,23 @@ int main(){
     cout << "no of subject: ";
     cin >> numsubj;
     string *studlist = new string[numstud];
-    string *subjgrade = new string[numsubj];
+    string *subjgrade = new string[numsubj*numstud]; //to store the overall grades of all students
     
     
     for(int i = 0; i<numstud;i++){
 
         cout << "Student ID: ",cin >> studlist[i];
         for(int j = 0 ; j<numsubj;j++){
-            cout <<"subject" << i + 1 << ": ";
-            cin >> subjgrade[j]; 
+            cout <<"subject" << j + 1 << ": ";
+            
+            cin >> subjgrade[j + ((i*numsubj))]; //stores students grade respectively 
         }
     }
     for(int i = 0; i<numstud;i++){
-        cout << "studlist: " << studlist[i] << " ";
+        cout << studlist[i] << " ";
+        for(int j = i*numsubj; j < numsubj+(i*numsubj);j++){ //this calls out the data stored.. maths algorthim:)
+            cout << subjgrade[j] << " ";
+        }
+        cout << endl;
     }
 }
