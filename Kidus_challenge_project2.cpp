@@ -2,6 +2,7 @@
 #include <string.h>
 using namespace std;
 int main(){
+    string userinput;
     int numstud,numsubj;
     cout << "no of students: ";
     cin >> numstud;
@@ -15,6 +16,7 @@ int main(){
     int *credithr = new int[numsubj];
     int gradepoint[numstud][numsubj];
     float *CGPA = new float[numstud];
+    float *CGPA1 = new float[numstud];
         //-------------------------------------
         for(int i = 0; i<numsubj; i++){    //recives input from the user about the subject names
             cout <<"name of subject " << i+1 <<"(4characters): ";
@@ -30,6 +32,10 @@ int main(){
         //-------------------------------------
         for(int i = 0; i < numstud; i++){ //stores student ids and their grades 
             cout << "Student ID: ",cin>>studlist[i];
+            if((studlist[i].length() != 11)){
+                cout << "ID length must be 11 char long try again!\n";
+                cout << "Student ID: ",cin>>studlist[i];
+            }
             for (int j = 0; j<numsubj; j++){
                 cout << "subject" << j+1 << ": ";
                 cin >> subjmark[i][j];
@@ -112,5 +118,9 @@ int main(){
             cout << endl;
         }
         //--------------------------------------
-        //Thank you for your time. 
+        cout << "Enter A to rank the top 5 students\n ";
+        cout << "Enter B to search for student by their ID";
+        cin >> userinput;
+        //if(userinput == "A"){
+        //}
 }
