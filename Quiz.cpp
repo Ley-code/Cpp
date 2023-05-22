@@ -2,8 +2,12 @@
 using namespace std;
 int main(){
     int numque,numchoice;
-    int correctguesses = 0;
     string question,response;
+
+    string *Questions = new string[numque];
+    string choices[numque][numchoice];
+    string *Answer = new string[numque];
+    string *guess = new string[numque];
 
     cout << "Number of questions: ";
     cin >> numque;
@@ -11,12 +15,6 @@ int main(){
     cin >> numchoice;
     cin.ignore();
 
-
-    string *Questions = new string[numque];
-    string choices[numque][numchoice];
-    string *Answer = new string[numque];
-
-    string *guess = new string[numque];
     //-----------------------------------------------------------
     for(int i = 0; i<numque ; ++i){
         cout << "Question no " << i+1 <<": ";
@@ -41,32 +39,35 @@ int main(){
     }
     cout << "Do you wanna start the quiz(y/n): ";
     cin >> response;
-    for(int i = 0; i < response.length(); i++)
-        response[i] = response[i] + 32;
-    if(response == "y"){
-        cout << "-----------------------QuizTime ------------------";
-        cout <<endl;
-        for(int i = 0; i<numque;i++){
-            cout << i+1 <<". " << Questions[i] << "?";
-            cout << endl;                                               //asks the questions
-            for(int j = 0; j<numchoice;j++){
-                cout << char(j+65) <<". " << choices[i][j];
-                cout <<endl;
 
+    while(response == "y"){
+            int correctguesses = 0;
+            cout << "-----------------------QuizTime ------------------";
+            cout <<endl;
+            for(int i = 0; i<numque;i++){
+                cout << i+1 <<". " << Questions[i] << "?";
+                cout << endl;                                               //asks the questions 
+                for(int j = 0; j<numchoice;j++){
+                    cout << char(j+65) <<". " << choices[i][j];
+                    cout <<endl;
+
+                }
+                cout <<"Your Answer: ";
+                cin >> guess[i];
+                if(Answer[i]==guess[i]){
+                    cout <<"You are correct!!!"<<endl;
+                    correctguesses += 1;
+                }else{
+                    cout <<"You are wrong :)"<<endl;
+                    cout <<"The correct answer was " << Answer[i] << endl;    
+                }
             }
-            cout <<"Your Answer: ";
-            cin >> guess[i];
-            if(Answer[i]==guess[i]){
-                cout <<"You are correct!!!"<<endl;
-                correctguesses += 1;
-            }else{
-                cout <<"You are wrong :)"<<endl;
-                cout <<"The correct answer was " << Answer[i];    
-            }
-        }
+        //---------------------------------------------------------------
+        cout <<"-------------Results!!--------------"<<endl;
+        cout << correctguesses << " out of " << numque << endl;            //desplays the result
+        cout << "Do you wanna start the quiz(y/n): ";
+        cin >> response;
+        //----------------------------------------------------------------
     }
-    //---------------------------------------------------------------
-    cout <<"-------------Results!!--------------"<<endl;
-    cout << correctguesses << " out of " << numque;            //desplays the result
-    //----------------------------------------------------------------
+    
 }
