@@ -2,18 +2,29 @@
 using namespace std;
 int main(){
     int numque,numchoice;
-    string question,response;
+    string question,response,typeofquestions;
 
+    cout << "Welcome to the Quiz Fun project!!\nPlease chose your question type from the list below.\nA.choose the best answer\nB.Fill in the blanks\ninput: ";
+    cin >> typeofquestions;
+    if(typeofquestions == "A"){
+        cout << "Number of questions: ";
+        cin >> numque;
+        cout << "Number of choices each question have(Maximum = 5): ";
+        cin >> numchoice;
+        cin.ignore();
+        while(numchoice > 5){
+            cout << "Number of choices each question have(Maximum = 5): ";
+            cin >> numchoice;
+            cin.ignore();
+        }
+    }else if(typeofquestions == "B"){
+        cout << "Work in progress";
+    }
+    
     string *Questions = new string[numque];
     string choices[numque][numchoice];
     string *Answer = new string[numque];
     string *guess = new string[numque];
-
-    cout << "Number of questions: ";
-    cin >> numque;
-    cout << "Number of choices each question have: ";
-    cin >> numchoice;
-    cin.ignore();
 
     //-----------------------------------------------------------
     for(int i = 0; i<numque ; ++i){
